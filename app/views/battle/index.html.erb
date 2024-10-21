@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script>
+    document.getElementById("attack").onClick = PlayMusic();
+    function PlayMusic() {
+        console.log("axike");
+        var play = document.getElementById("music");
+        play.play();
+    }
+
+    </script>
+    <title>World Of W@c Craft</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/WoW_icon.svg">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+</head>
+    <body>
+        <div>
+            <div>
+                <div><%= @Character.name %></div>
+                <div><img src="<%=@Character.jpg%>"/></div>
+                <div>Hp :<%= @Characterhp %></div>
+                <div>Mana :<%= @CharacterMana %></div>
+                <div>Damage :<%= @CharacterAttack %> <span><button id="attack" onClick="PlayMusic();">tabik</button></span></div>
+                <div>Armor :<%= @CharacterArmor %></div>
+            </div>
+            <div>--------------------------</div>
+            <div>
+                <div><%= @Pnj.name %></div>
+                <div><img src="<%=@Pnj.jpg%>"/></div>
+
+                <div>hp :<%= @PnjHp %></div>
+                <div>Mana :<%= @PnjMana %></div>
+                <div>Armor :<%= @PnjArmor %></div>
+            </div>
+        </div>
+        <audio autoplay id="music"> <source src="https://static.wikia.nocookie.net/chrono/images/c/c3/Magus_Confronted.ogg" autoplay="true"
+    ></audio>
+    </body>
+</html>

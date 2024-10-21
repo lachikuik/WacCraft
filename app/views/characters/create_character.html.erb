@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>World Of W@c Craft</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/WoW_icon.svg">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "characters/create_character", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+        <h1 class="title_perso">Create your character</h1>
+        <form action="create_character_src" method="POST">
+          <div class="flex p-6  gap-9 justify-between mx-28">
+            <div class="flex flex-col gap-5">
+            <!-- Section 1 (Character)-->
+              
+              <div class="wrapper-classes">
+              <div class="gender_title">Gender</div>
+              
+              <div class="flex">
+                <label class="custom-radio flex justify-center">
+                  <input type="radio" name="gender" value="homme">
+                  <div class="radio-btn">
+                     <div class="container-gender">
+                        <div class="flex gap-2">
+                            <div class="profil-picture_male">
+                                <img src="<%= asset_path('pvw75174_male.png') %>" alt="male" height="45px" width="45px">
+                            </div>
+                        </div>
+                        <!--<div class="container-checkbox">
+                            <span class="check-icon">
+                                <span class="icon"></span>
+                            </span>
+                        </div>
+                        -->
+                    </div>
+                  </div>
+                </label>
+
+                 <label class="custom-radio flex justify-center">
+                  <input type="radio" name="gender" value="femme">
+                  <div class="radio-btn">
+                     <div class="container-gender">
+                        <div class="flex gap-2">
+                            <div class="profil-picture_female">
+                                <img src="<%= asset_path('pvw75174_female.png') %>" alt="female" height="45px" width="45px">
+                            </div>
+                        </div>
+                        <!--<div class="container-checkbox">
+                            <span class="check-icon">
+                                <span class="icon"></span>
+                            </span>
+                        </div>
+                        -->
+                    </div>
+                  </div>
+                </label>
+                </div>
+
+              </div>
+
+            <!--
+              <div class="flex gap-2"> 
+                <div class="container-alliance text-center">
+                  <div class="sous_title_small">Alliance</div>
+                      
+
+                    <%= form_with method: :get, local: true do |form| %>
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                        <% @characters.each do |character, key| %>
+                          <%= radio_button_tag 'option', "#{character.id}", false, name: 'character_race', class: 'hidden-radio', onchange: "this.form.submit();" %>
+                          <%= label_tag "option_#{character.id}" do %>  
+                            <div class="container-characters">
+                                <img src=<%= character.jpg %> height="45" width="45">
+                                <p class="text-center"><%= character.name %></p>
+                              </div>
+                          <% end %>
+                        <% end %>
+
+                      <% end %>
+
+                </div>
+                <div class="container-horde text-center">
+                  <div class="sous_title_small">Horde</div>
+                  
+                  
+                  <label class="custom-radio">
+                    <input type="radio" name="character_race">
+                     <div class="radio-btn">
+                      <div class="container-characters">
+                          <img src="https://static.wikia.nocookie.net/wowpedia/images/b/b8/BTNHeroLich.png" height="45" width="45">
+                          <p class="text-center">Orc</p>
+                      </div>
+                    </div>
+                  </label>
+
+                </div>
+
+              </div>
+            -->
+            </div>
+      
+            <!-- Section 2 (Character type)-->      
+            <div class="container_character_type">
+              <div class="gender_title mb-5">Character type</div>
+              <div class="flex justify-center gap-6">
+                
+                <div class="container_lvl_default">
+                  <div class="sous_title_small">New</div>
+                  
+                  <% if @avatar %>
+                  <span>Level <%= @avatar[1] %></span>
+                    <% else %>
+                    level 0
+                  <% end %>
+                  
+                </div>
+                
+              </div>
+               <!-- Section Character -->
+            <div class="justify-center flex mt-5">  
+              
+              
+              <% if @avatar %>
+                  <img src="<%= @avatar[0] %>">
+                <% else %>
+                  Aucun charactère séléctionner
+              <% end %>
+              
+            </div> 
+
+            <!-- Section Nom -->
+
+
+            <div class="w-full mt-5 mb-2">
+              <label for="name_character">Nom du character</label>
+              <input type="text" class="name_champ" name="name_character">
+            </div>
+            <!-- Section Nom -->
+
+            
+            <!-- Section avatar upload -->
+
+            <div class="w-full mt-5 mb-2">
+              <label for="avatar_character">Insérer une image</label>
+            </div>
+            <input type="text" class="avatar_character" name="avatar_character">
+            
+            <!-- Section avatar upload -->
+
+            <!-- Section Character -->
+
+            <!--Section Img Character -->  
+              <div class="img-character">
+                <button>Créer le character</button>
+              </div>
+              
+            <!--Section Img Character -->
+            </div>
+
+           
+
+            <!-- Section 3 (Class)-->
+            <div class="text-center">
+              <div class="flex">
+                <div>
+                  <div class="gender_title title_class">CLASS</div>
+                  
+                  <div class="container_class_scrollbar">
+                  <% @classes.each do |classe| %>
+                 <label class="custom-radio">
+                    <input type="radio" name="classes" value="<%= classe.id %>">
+                     <div class="radio-btn">
+                      <div class="container-classes">
+                          <img src="<%= classe.jpg %>" height=45 width=45>
+                          <p class="text-center sous_title_small"><%= classe.name %></p>
+                      </div>
+                    </div>
+                  </label>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          
+           
+        <% if flash[:notice] %>
+          <div class="p-2 rounded toastSuccess mb-20">
+            <%= flash[:notice] %>
+          </div>
+        <% elsif flash[:alert] %>
+          <div class="p-2 rounded toastError mb-20">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        </form>
+
+
+  </body>
+  
+</html> 

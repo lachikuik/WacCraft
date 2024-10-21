@@ -1,0 +1,20 @@
+<main class="p-1 font-bold flex flex-col flex-grow items-center justify-center gap-5">
+    <h1 class="text-2xl">Home</h1>
+
+    <div class="flex flex-col bg-slate-950 bg-opacity-70 w-6/12 border-slate-300 border gap-2">
+        <% @users.each do |users| %>
+        <div class="flex flex-col gap-2 hover:bg-slate-700 p-2 duration-100 transition-all">
+            <p>User's id : <%= users.id %></p>
+            <p>User's email : <%= users.email %></p>
+            <p>User's name : <%= users.name %></p>
+            <p>User's password : <%= users.password %></p>
+        </div>
+        <% end %>
+    </div>
+
+    <a href="http://127.0.0.1:3000/">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration 200">
+        Go back Home
+        </button>
+    </a>
+</main>

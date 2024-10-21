@@ -1,0 +1,49 @@
+<main class="p-1 font-bold flex flex-col flex-grow items-center justify-center gap-5">
+    
+    <h1 class="text-6xl title text-center text-slate-200 flex gap-0 text-center">
+        <span class="text-blue-500">
+            W
+        </span>
+
+        <span class="text-white text-5xl">    
+            @
+        </span>
+
+        <span class="text-blue-500">
+            C
+        </span>
+
+        &nbsp;
+
+        <span class="text-red-500">
+            CRAFT
+        </span>
+
+        <span class="text-white ml-5">
+            2024
+        </span>
+    </h1>
+            
+
+        
+
+    <div class="flex flex-col gap-2 items-center justify-center min-h-[50px]">
+        <a href="<%= url_for(controller: 'auth', action: 'form') %>" class="min-h-[100px] ">
+            <button type="submit" class="light-button play-red-btn min-w-[216px] flex items-center justify-center bg-red-500 hover:bg-red-600 py-2 px-4 text-white font-bold gap-2 rounded flex items-center transition-all duration-200">
+                <img src="<%= asset_path('play-white.png') %>" alt="play button" class="w-5 h-5 mr-2 fill-white playPng transition-all duration-200">
+                <input type="submit" value="PLAY GAME" class="cursor-pointer transition-all duration-200"/>
+            </button>
+        </a>
+    </div>
+
+
+<% if flash[:notice] %>
+  <div class="p-2 rounded toastSuccess mb-20">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="p-2 rounded toastError mb-20">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+</main>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World Of W@c Craft</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/WoW_icon.svg">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+</head>
+    <body>
+        <h2>Profile</h2>
+        <h2><%=@Character.name%></h2>
+         <h2><%=@CharacterClassname%></h2>
+        <div><img src="<%=@Character.jpg%>"/></div>
+        <table>
+            <tr>
+                <th>HP</th>
+                <th>Mana</th>
+                <th>Attack</th>
+                <th>Armor</th>
+                <th>STR</th>
+                <th>INT</th>
+                <th>AGI</th>
+                <th>LvL</th>
+                <th>XP</th>
+            </tr>
+            <tr>
+                <td><%= @Characterhp %></td>
+                <td><%= @CharacterMana %></td>
+                <td><%= @CharacterAttack %></td>
+                <td><%= @CharacterArmor %></td>
+                <td><%= @Character.str %></td>
+                <td><%= @Character.intel %></td>
+                <td><%= @Character.agi %></td>
+                <td><%= @Character.lvl %></td>
+                <td><%= @Character.xp %></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+
+        <h2>spells</h2>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Mana Cost</th>
+                <th>Damage</th>
+            </tr>
+        <% @CharacterSpells.each do |spell| %>
+            <tr>
+                <td><img src="<%=spell.jpg%>"/></td>
+                <td><%= spell.name %></td>
+                <td><%= spell.manaCost %></td>
+                <td><%= spell.damage %></td>
+            </tr>
+        <% end %>
+        </table>
+        <br>
+        <br>
+        <br>
+        <h2>Inventory</h2>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>STR</th>
+                <th>INT</th>
+                <th>AGI</th>
+                <th>Gold</th>
+            </tr>
+        <% @CharacterItems.each do |item| %>
+            <tr>
+                <td><img src="<%=item.jpg%>"/></td>
+                <td><%= item.name %></td>
+                <td><%= item.str %></td>
+                <td><%= item.intel %></td>
+                <td><%= item.agi %></td>
+                <td><%= item.gold %></td>
+            </tr>
+        <% end %>
+        </table>
+        <br>
+        <br>
+        <h2>Stuff</h2>
+        <br>
+        <br>
+        <table>
+        <% @CharacterItems.each do |item| %>
+            <tr>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>STR</th>
+                <th>INT</th>
+                <th>AGI</th>
+                <th>Gold</th>
+            </tr>
+            <% @CharacterItems.each do |item| %>
+            <tr>
+                <td><img src="<%=item.jpg%>"/></td>
+                <td><%= item.name %></td>
+                <td><%= item.str %></td>
+                <td><%= item.intel %></td>
+                <td><%= item.agi %></td>
+                <td><%= item.gold %></td>
+            </tr>
+            <% end %>
+        <% end %>
+        </table>
+    </body>
+</html>

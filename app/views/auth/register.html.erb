@@ -1,0 +1,39 @@
+<h1 class="title text-6xl w-full text-center pb-2">Register</h1>
+
+  <form class="flex flex-col gap-5" action="<%= url_for(controller: 'auth', action: 'createUser') %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input class="focus:outline-none bg-white bg-opacity-10 p-2 rounded" type="email" name="user[email]" placeholder="Email" required />
+    <input class="focus:outline-none bg-white bg-opacity-10 p-2 rounded" type="password" name="user[password]" placeholder="Password" required />
+    <button class="light-button play-green-btn min-w-[216px] flex items-center justify-center bg-green-500 hover:bg-green-400 py-2 px-4 text-white font-bold gap-2 rounded flex items-center transition-all duration-200">
+      <input type="submit" value="Register" class="cursor-pointer" />
+    </button>  
+  </form>
+
+  
+
+  <a href="<%= root_path %>">
+      <button class="light-button min-w-[215px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration 200">
+      HOME
+    </button>
+  </a>
+
+<div class="flex gap-2 items-center justify-center">
+  <p class="">Not registered ?</p>
+  <a href="<%= url_for(controller: 'auth', action: 'login') %>">
+    <button class="text-blue-300">
+      Login
+    </button>
+  </a>
+</div>
+
+
+<!-- GESTION DES MESSAGES DE VALIDATION/ERREUR -->
+<% if flash[:notice] %>
+  <div class="p-2 rounded toastSuccess mb-20">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="p-2 rounded toastError mb-20">
+    <%= flash[:alert] %>
+  </div>
+<% end %>

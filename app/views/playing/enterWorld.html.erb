@@ -1,0 +1,126 @@
+<div class="w-full flex flex-grow p-5 items-start h-fit justify-between">
+  <% if @character %>
+  <div class="flex flex-col gap-5 bg-slate-950 bg-opacity-70 rounded-xl hover:border-amber-500 hover:bg-opacity-80 w-fit p-5 border border-slate-700 transition-all duration-200">
+    <div class="flex w-full items-center justify-between gap-2">
+      <div class="flex flex-col min-w-fit">
+        <img src="<%= @character.jpg %>" alt="<%= @character.name %>'s Profile Image" class="w-[95px] h-[95px]" />
+      </div>
+      <div class="flex flex-col w-full justify-between gap-1 text-xl pirata">
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">NAME :</p>
+          <p class="font-normal text-center w-fit"><%= @character.name %></p>
+        </div>
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">CLASS :</p>
+          <p class="font-normal text-center w-fit"><%= @character.classes.name %></p>
+        </div>
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">LEVEL :</p>
+          <p class="font-normal text-center w-fit"><%= @character.lvl %></p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Affichage des stats du personnage joueur -->
+    <div class="flex flex-col w-full">
+      <div class="flex gap-2 w-full justify-evenly">
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-[#786640]">STR</p>
+          <p class="font-bold p-2"><%= @character.str %></p>
+        </div>
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-red-400">INT</p>
+          <p class="font-bold p-2"><%= @character.intel %></p>
+        </div>
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-green-400">AGI</p>
+          <p class="font-bold p-2"><%= @character.agi %></p>
+        </div>
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-blue-500">EXP</p>
+          <p class="font-bold p-2"><%= @character.xp %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @quest_available %>
+    <!-- Affichage de la possibilité de prendre la quête -->
+    <div class="flex flex-col gap-5 bg-slate-950 bg-opacity-70 rounded-xl hover:border-amber-500 hover:bg-opacity-80 w-fit p-5 border border-slate-700 transition-all duration-200">
+      <div class="flex flex-col min-w-fit gap-2">
+        <p class="text-white pirata text-2xl">Une quête est disponible !</p>
+        <%= form_with(url: take_quest_path, method: :post) do %>
+          <%= submit_tag 'Prendre la quête', class: "w-full bg-green-500 p-2 rounded text-center text-sm pirata hover:bg-green-600 transition-all duration-200" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Affichage du PNJ -->
+  <% if @pnj %>
+  <div class="flex flex-col gap-5 bg-slate-950 bg-opacity-70 rounded-xl hover:border-amber-500 hover:bg-opacity-80 w-fit p-5 border border-slate-700 transition-all duration-200">
+    <div class="flex w-full items-center justify-between gap-2">
+      <div class="flex flex-col min-w-fit">
+        <img src="<%= @pnj.jpg %>" alt="<%= @pnj.name %>'s Profile Image" class="w-[95px] h-[95px]" />
+      </div>
+      <div class="flex flex-col w-full justify-between gap-1 text-xl pirata">
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">NAME :</p>
+          <p class="font-normal text-center w-fit"><%= @pnj.name %></p>
+        </div>
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">Main Stat :</p>
+          <p class="font-normal text-center w-fit"><%= @pnj.mainStat %></p>
+        </div>
+        <div class="flex gap-2">
+          <p class="font-bold text-sky-500 min-w-fit">LEVEL :</p>
+          <p class="font-normal text-center w-fit"><%= @pnj.lvl %></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="flex flex-col w-full">
+      <div class="flex gap-2 w-full justify-evenly">
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-[#786640]">STR</p>
+          <p class="font-bold p-2"><%= @pnj.str %></p>
+        </div>
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-red-400">INT</p>
+          <p class="font-bold p-2"><%= @pnj.intel %></p>
+        </div>
+        <div class="flex flex-col items-center justify-center min-w-[70px] max-w-[70px] p-2 bg-slate-400 bg-opacity-20 rounded-xl">
+          <p class="pirata text-2xl text-green-400">AGI</p>
+          <p class="font-bold p-2"><%= @pnj.agi %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-2 items-center justify-center w-full">
+      <%= link_to 'Talk', talk_pnj_path(@pnj), class: "w-3/6 bg-green-500 p-2 rounded text-center text-sm pirata hover:bg-green-600 transition-all duration-200" %>
+      
+      <%= form_with(url: perform_attack_pnj_path(@pnj), method: :post, class: "w-3/6") do %>
+        <%= submit_tag 'Attack', class: "bg-red-500 p-2 rounded text-center text-sm pirata hover:bg-red-600 transition-all duration-200 w-full" %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>
+
+<div class="w-full flex items-center justify-center">
+  <% if flash[:notice] %>
+    <div class="p-2 rounded toastSuccess mb-20">
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="p-2 rounded toastError mb-20">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+</div>
+
+<form class="p-5 w-full h-fit flex justify-end items-center" action="<%= url_for(controller: 'auth', action: 'logout') %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="submit" class="text-sm cursor-pointer w-fit flex items-center justify-center bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center transition-all duration 200" value="LOGOUT"></input>
+</form>

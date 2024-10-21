@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>World Of W@c Craft</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/WoW_icon.svg">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script>
+    window.onload = function () {
+      const divs = document.querySelectorAll('.radio-container');
+
+      divs.forEach(div => {
+          div.addEventListener('click', function () {
+              divs.forEach(d => d.classList.remove('bg-yellow-500', 'bg-opacity-30', 'border-yellow-500'));
+
+              const radio = div.querySelector('input[type="radio"]');
+              if (radio) {
+                  radio.checked = true;
+                  div.classList.add('bg-yellow-500', 'bg-opacity-30', 'border-yellow-500');
+              }
+          });
+      });
+    };
+    </script>
+
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html> 

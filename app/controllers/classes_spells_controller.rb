@@ -1,0 +1,3 @@
+class ClassesSpellsController < ApplicationController
+
+end

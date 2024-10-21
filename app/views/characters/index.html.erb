@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>World Of W@c Craft</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/WoW_icon.svg">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "characters/characters", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+        <h1 class="title_perso">Select your character</h1>
+        
+        <% if @characters.empty? %>
+          <p class="text-red-500">
+            You don't have any characters yet.
+          </p>
+        <% else %>
+
+        <div class="container-persos">
+            <div class="scrollbar-perso">
+            <%= form_with url: "/select_perso", method: :post do |form| %>
+            <% @characters.each do |character| %>
+            <label class="custom-radio">
+                <%= form.radio_button :select_perso, "<%= character.id_user>" %>
+                <div class="radio-btn">
+                    <div class="container-perso">
+                        <div class="flex gap-2">
+                            <div class="profil-picture">
+                                <img src="<%= character.jpg %>">
+                            </div>
+                            <div class="container-character">
+                                <p class="text"><%= character.name %></p>
+                                <div class="character">
+                                    <p class="container-lvl">Level <%= character.lvl %></p>
+                                    <p class="character-class">Druid</p>
+                                </div>
+                                <p class="container-desc-class">Les sentinelles</p>
+                            </div>
+                        </div>
+                        <div class="container-checkbox">
+                            <span class="check-icon">
+                                <span class="icon relative bottom-1"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+            </label>
+
+            <% end %>
+
+        </div>
+        <div class="container-button">
+            <div class="create_character">
+                <%= link_to 'Créer un charactère', '/create_character' %>
+            </div>
+            <div class="delete_character">
+                <%= link_to 'Supprimer un charactère', '/delete_character' %>
+            </div>
+        </div>
+
+        <div class="select-character"><%= form.submit "Jouer avec ce personnage" %></div>
+        <% end %>
+
+        
+    <% end %>
+    </div>
+  </body>
+</html> 
